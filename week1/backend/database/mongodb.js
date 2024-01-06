@@ -24,4 +24,27 @@ async function runDbConnection() {
   }
 }
 
-module.exports = runDbConnection;
+function getDbClient() {
+  if (!client.isConnected()) {
+    throw new Error('Client is not connected');
+  } else {
+    return client;
+  }
+}
+
+async function findProfessionalByName(name) {
+  try {
+    await client.connect();
+    const database = client.db('cse341api');
+    const collection = database.collection('professional');
+    const query = { professionalName: name };
+    const professional = await collection.findOne(query);
+    return professional;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    await client.close();
+  }
+}
+
+module.exports = { runDbConnection, findProfessionalByName };
