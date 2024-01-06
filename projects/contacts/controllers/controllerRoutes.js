@@ -1,4 +1,4 @@
-const { getAllContacts } = require('../database/mongodb');
+const { getAllContacts, getContactById } = require('../database/mongodb');
 
 const helloWorldRoute = (req, res) => {
   res.send('Hello World!');
@@ -6,12 +6,17 @@ const helloWorldRoute = (req, res) => {
 
 const contactsRoute = async (req, res) => {
   const contacts = await getAllContacts();
-  res.send(JSON.stringify(contacts));
+  res.status(200).send(JSON.stringify(contacts));
 };
 
-const contactByIdRoute = (req, res) => {
+const contactByIdRoute = async (req, res) => {
   const id = req.params.id;
-  console.log('id: ', id);
+  const contact = await getContactById(id);
+  if (!contact) {
+    res.status(404).send({});
+    return;
+  }
+  res.status(200).send(JSON.stringify(contact));
 };
 
 module.exports = {

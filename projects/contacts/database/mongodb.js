@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.dd4wusz.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
@@ -37,13 +37,31 @@ async function getAllContacts() {
     await client.connect();
     const database = client.db('cse341api');
     const collection = database.collection('contacts');
-    const contacts = await collection.findOne({});
+    const contacts = await collection.find({}).toArray((err, result) => {
+      if (err) throw err;
+      return result;
+    });
     return contacts;
   } catch (err) {
     console.error(err);
-  } finally {
-    await client.close();
   }
 }
 
-module.exports = { runDbConnection, getAllContacts, getDbClient };
+async function getContactById(id) {
+  try {
+    await client.connect();
+    const database = client.db('cse341api');
+    const collection = database.collection('contacts');
+    const contact = await collection.findOne({ _id: new ObjectId(id) });
+    return contact;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+module.exports = {
+  runDbConnection,
+  getAllContacts,
+  getDbClient,
+  getContactById,
+};
