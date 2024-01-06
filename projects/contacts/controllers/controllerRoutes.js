@@ -1,9 +1,5 @@
 const { getAllContacts, getContactById } = require('../database/mongodb');
 
-const helloWorldRoute = (req, res) => {
-  res.send('Hello World!');
-};
-
 const contactsRoute = async (req, res) => {
   const contacts = await getAllContacts();
   res.status(200).send(JSON.stringify(contacts));
@@ -20,7 +16,6 @@ const contactByIdRoute = async (req, res) => {
 };
 
 module.exports = {
-  helloWorldRoute,
   contactsRoute,
   contactByIdRoute,
 };
