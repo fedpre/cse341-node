@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const routes = require('./routes');
+const runDbConnection = require('./database/mongodb');
 const app = express();
+
+runDbConnection();
 
 app.use('/', routes);
 
