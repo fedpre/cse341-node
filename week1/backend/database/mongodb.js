@@ -17,9 +17,6 @@ async function runDbConnection() {
     console.log(
       'Pinged your deployment. You successfully connected to MongoDB!'
     );
-
-    const databaseList = await client.db().admin().listDatabases();
-    console.log('Your databases:' + JSON.stringify(databaseList));
   } catch (err) {
     console.error(err);
   } finally {
