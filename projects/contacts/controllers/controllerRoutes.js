@@ -76,7 +76,6 @@ const updateContactByIdRoute = async (req, res) => {
       client,
       req.body
     );
-    console.log(updatedResult, err);
 
     if (err) {
       res.status(500).send({
@@ -96,9 +95,8 @@ const updateContactByIdRoute = async (req, res) => {
       message: 'Contact updated successfully!',
     });
   } catch (err) {
-    console.log(err);
     res.status(500).send({
-      message: 'Error updating contact!',
+      message: 'Error updating contact! ' + err,
     });
   }
 };
@@ -129,7 +127,7 @@ const deleteContactByIdRoute = async (req, res) => {
     });
   } catch (err) {
     res.status(500).send({
-      message: 'Error deleting contact!',
+      message: 'Error deleting contact!' + err,
     });
   }
 };
