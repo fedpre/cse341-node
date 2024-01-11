@@ -1,2 +1,0 @@
-GET https://contacts-project-1-canj.onrender.com/
-GET https://contacts-project-1-canj.onrender.com/65999bf3cb2a0a4daf6f9b05

@@ -45,7 +45,7 @@ async function updateContactById(id, client, contact) {
       const resultAddContact = await collection.insertOne(contact);
       return resultAddContact;
     }
-    const updateResult = await collection.updateOne(
+    const updatedResult = await collection.updateOne(
       { _id: new ObjectId(id) },
       {
         $set: {
@@ -57,7 +57,7 @@ async function updateContactById(id, client, contact) {
         },
       }
     );
-    return { updateResult, err: null };
+    return { updatedResult, err: null };
   } catch (err) {
     return { updateResult: null, err };
   }

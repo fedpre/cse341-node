@@ -12,7 +12,7 @@ runDbConnection();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/posts', routes);
+app.use('/contacts', routes);
 
 const PORT = process.env.PORT || 8080;
 
