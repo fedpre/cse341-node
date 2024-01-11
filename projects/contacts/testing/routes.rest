@@ -52,14 +52,14 @@ content-type: application/json
 }
 
 ### Update user
-PUT https://contacts-project-1-canj.onrender.com/contacts/65a0203acd9a336d97311bf3 HTTP/1.1
+PUT https://contacts-project-1-canj.onrender.com/contacts/65a0248895108a2f7e949b6c HTTP/1.1
 content-type: application/json
 
 {
     "firstName": "Mary",
-    "lastName": "Rose",
-    "email": "mary.rose@example.com"
+    "lastName": "Doe",
+    "email": "mary.doe@example.com"
 }
 
 ### Delete user
-DELETE https://contacts-project-1-canj.onrender.com/contacts/6599a33bcb2a0a4daf6f9b06 HTTP/1.1
+DELETE https://contacts-project-1-canj.onrender.com/contacts/65a0248895108a2f7e949b6c HTTP/1.1
