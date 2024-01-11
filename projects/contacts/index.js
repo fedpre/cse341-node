@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
+const bodyParser = require('body-parser');
 const { runDbConnection } = require('./database/mongodb');
 
 const app = express();
@@ -9,7 +10,9 @@ const app = express();
 runDbConnection();
 
 app.use(cors());
-app.use('/', routes);
+app.use(bodyParser.json());
+
+app.use('/posts', routes);
 
 const PORT = process.env.PORT || 8080;
 
