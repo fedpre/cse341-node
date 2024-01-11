@@ -8,9 +8,9 @@ async function getAllContacts(client) {
       if (err) throw err;
       return result;
     });
-    return contacts;
+    return { contacts, err: null };
   } catch (err) {
-    console.error(err);
+    return { contact: null, err };
   }
 }
 
@@ -19,9 +19,9 @@ async function getContactById(id, client) {
     const database = client.db('cse341api');
     const collection = database.collection('contacts');
     const contact = await collection.findOne({ _id: new ObjectId(id) });
-    return contact;
+    return { contact, err: null };
   } catch (err) {
-    console.error(err);
+    return { contact: null, err };
   }
 }
 
@@ -30,9 +30,9 @@ async function addContact(contact, client) {
     const database = client.db('cse341api');
     const collection = database.collection('contacts');
     const result = await collection.insertOne(contact);
-    return result;
+    return { result, err: null };
   } catch (err) {
-    console.error(err);
+    return { result: null, err };
   }
 }
 
@@ -57,9 +57,9 @@ async function updateContactById(id, client, contact) {
         },
       }
     );
-    return updateResult;
+    return { updateResult, err: null };
   } catch (err) {
-    console.error(err);
+    return { updateResult: null, err };
   }
 }
 
@@ -68,9 +68,9 @@ async function deleteContactById(id, client) {
     const database = client.db('cse341api');
     const collection = database.collection('contacts');
     const result = await collection.deleteOne({ _id: new ObjectId(id) });
-    return result;
+    return { result, err: null };
   } catch (err) {
-    console.error(err);
+    return { result: null, err };
   }
 }
 
