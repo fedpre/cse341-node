@@ -13,7 +13,6 @@ const client = new MongoClient(uri, {
 
 async function runDbConnection() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     await client.db('admin').command({ ping: 1 });
     console.log(
@@ -21,49 +20,14 @@ async function runDbConnection() {
     );
   } catch (err) {
     console.error(err);
-  } finally {
-    await client.close();
   }
 }
 
-function getDbClient() {
-  if (!client.isConnected()) {
-    throw new Error('Client is not connected');
-  } else {
-    return client;
-  }
-}
-
-async function getAllContacts() {
-  try {
-    await client.connect();
-    const database = client.db('cse341api');
-    const collection = database.collection('contacts');
-    const contacts = await collection.find({}).toArray((err, result) => {
-      if (err) throw err;
-      return result;
-    });
-    return contacts;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-async function getContactById(id) {
-  try {
-    await client.connect();
-    const database = client.db('cse341api');
-    const collection = database.collection('contacts');
-    const contact = await collection.findOne({ _id: new ObjectId(id) });
-    return contact;
-  } catch (err) {
-    console.error(err);
-  }
+async function getDbClient() {
+  return client;
 }
 
 module.exports = {
   runDbConnection,
-  getAllContacts,
   getDbClient,
-  getContactById,
 };

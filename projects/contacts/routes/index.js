@@ -5,7 +5,7 @@ const {
 
 const routes = require('express').Router();
 
-routes.get('/', contactsRoute);
-routes.get('/:id', contactByIdRoute);
+routes.get('/posts', contactsRoute);
+routes.get('/posts/:id', contactByIdRoute);
 
 module.exports = routes;
