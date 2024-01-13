@@ -8,10 +8,12 @@ const {
 
 const routes = require('express').Router();
 
-routes.get('/', contactsRoute);
-routes.get('/:id', contactByIdRoute);
-routes.post('/', addContactRoute);
-routes.put('/:id', updateContactByIdRoute);
-routes.delete('/:id', deleteContactByIdRoute);
+routes.use('/', require('./swagger'));
+
+routes.get('/contacts', contactsRoute);
+routes.get('/contacts/:id', contactByIdRoute);
+routes.post('/contacts', addContactRoute);
+routes.put('/contacts/:id', updateContactByIdRoute);
+routes.delete('/contacts/:id', deleteContactByIdRoute);
 
 module.exports = routes;

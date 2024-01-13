@@ -8,6 +8,7 @@ const {
 } = require('../services/contactService');
 
 const contactsRoute = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const client = await getDbClient();
   const { contacts, err } = await getAllContacts(client);
   if (err) {
@@ -20,6 +21,7 @@ const contactsRoute = async (req, res) => {
 };
 
 const contactByIdRoute = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const client = await getDbClient();
   const id = req.params.id;
   const { contact, err } = await getContactById(id, client);
@@ -37,6 +39,7 @@ const contactByIdRoute = async (req, res) => {
 };
 
 const addContactRoute = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const client = await getDbClient();
   const contact = req.body;
 
@@ -67,6 +70,7 @@ const addContactRoute = async (req, res) => {
 };
 
 const updateContactByIdRoute = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const client = await getDbClient();
   const id = req.params.id;
 
@@ -102,6 +106,7 @@ const updateContactByIdRoute = async (req, res) => {
 };
 
 const deleteContactByIdRoute = async (req, res) => {
+  //#swagger.tags = ['Contacts']
   const client = await getDbClient();
   const id = req.params.id;
 
